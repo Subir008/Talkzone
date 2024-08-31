@@ -14,9 +14,10 @@
     <title>Hello, world!</title>
 </head>
 
-<body>
-
-
+    <!-- Add Header Files -->
+    <?php
+        include ("components/header.php");
+    ?>
   
 
 
