@@ -14,4 +14,6 @@
         echo "Connection Could't Established Due to : " . mysqli_connect_error();
     }
 
+    $timestamp = date("Y-m-d H:i:s"); 
+
 ?>
