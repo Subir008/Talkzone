@@ -109,22 +109,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="signup.php" method="post">
+                <form id="signupform">
+                <!-- <form action="signup.php" method="post"> -->
                     <div class="mb-3">
                         <label for="contact" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="exampleInputEmail1" name="contact" aria-describedby="emailHelp"  autocomplete="off">
+                        <input type="tel" class="form-control" id="contact" name="contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" autocomplete="off">
+                        <input type="password" class="form-control" id="password" name="password" autocomplete="off" required placeholder="Enter Your Password Here">
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" name="confirmPassword" id="exampleInputPassword1" autocomplete="off">
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" autocomplete="off" required placeholder="Confirm Your Password ">
                     </div>
                    <div class="mb-3 text-center">
-                       <button type="button" class="btn btn-danger col-5" data-bs-dismiss="modal">Cancel</button>
-                       <button type="submit" class="btn btn-primary col-5" >Submit</button>
+                       <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal" >Cancel</button>
+                       <button type="submit" class="btn btn-primary col-5" id="signup">Submit</button>
                     </div>
                 </form>
             </div>
