@@ -39,18 +39,7 @@
     }
   }
 
-  footer{
-    position: fixed;
-    bottom: 0;
-  }
-
-  footer .container {
-    width: auto;
-    max-width: 680px;
-    padding: 0 15px;
-  }
-
-  
+/* Loader start */
 .loader-wrapper{
   width: 100vw;
   height: 100vh;
@@ -77,4 +66,25 @@
 }
 @keyframes l7 {
     100% {background-size:100%}
+}
+/* Loader end */
+
+/* Carousel Start  */
+.carousel-img {
+  max-height: 80vh;
+}
+/* Carousel End  */
+
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 100vw;
+}
+
+footer .container {
+  /* width: auto; */
+  
+  padding: 0 15px;
 }
