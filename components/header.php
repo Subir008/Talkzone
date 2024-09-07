@@ -55,7 +55,7 @@
                 <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
                     data-bs-target="#loginModal">Login</button>
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                    data-bs-target="#signupModal">Sign-up</button>
+                    data-bs-target="#signupModal" onclick="cleardata()">Sign-up</button>
             </div>
 
             <!-- Hide in mobile view -->
@@ -113,7 +113,7 @@
                 <!-- <form action="signup.php" method="post"> -->
                     <div class="mb-3">
                         <label for="contact" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact" name="contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here">
+                        <input type="tel" class="form-control" id="contact" name="contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here"  pattern="[0-9]{10}" >
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
