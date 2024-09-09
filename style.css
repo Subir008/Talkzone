@@ -11,6 +11,10 @@
     /* min-height: 50rem; */
   }
 
+  html{
+    max-height: 90vh;
+  }
+
  .mobile-view-on{
        display: none;
     }
@@ -41,7 +45,7 @@
 
 /* Loader start */
 .loader-wrapper{
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: absolute;
   top: 0;
@@ -70,21 +74,51 @@
 /* Loader end */
 
 /* Carousel Start  */
+.carousel{
+  margin-top: 4.5rem;
+}
 .carousel-img {
-  max-height: 80vh;
+  max-height: 60vh;
 }
 /* Carousel End  */
 
+.forum-container{
+  padding-bottom: 7rem;
+  padding-top: 3rem;
+}
+
+.card-img-top{
+  height: 9rem;
+}
+
+.card a{
+  text-decoration: none;
+  color: #000;
+}
+
+.top-section{
+  margin-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.comment-user i{
+  padding-top: 2rem;
+}
+
+.card-details{
+  padding: 1rem 0rem;
+}
+
+/* Footer start */
 footer{
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   right: 0;
   max-width: 100vw;
 }
 
-footer .container {
-  /* width: auto; */
-  
+footer .container { 
   padding: 0 15px;
 }
+/* Footer end */

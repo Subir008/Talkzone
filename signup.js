@@ -1,8 +1,3 @@
-$(document).ready(function (){
-
-    
-});
-
 const toastLiveExample = document.getElementById("liveToast");
 const toast = new bootstrap.Toast(toastLiveExample);
 const loader = document.querySelector(".loader");
