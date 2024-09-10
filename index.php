@@ -72,13 +72,13 @@ include("components/header.php");
           <?php
           if ($row['forum_img'] != "") {
             ?>
-            <a href="forum-details.php">
+            <a href="forum-details.php?id=<?php echo $row['forum_id'] ?>">
               <!-- /id=<?php echo $row['forum_id'] ?> -->
               <img src="image/java.jpg" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['heading'] ?></h5>
-              <a href="forum-details.php">
+              <a href="forum-details.php?id=<?php echo $row['forum_id'] ?>">
                 <!-- /id=<?php echo $row['forum_id'] ?> -->
                 <p class="card-text"><?php echo substr($details, 0, 80) ?>........ </p>
               </a>
@@ -88,7 +88,7 @@ include("components/header.php");
             ?>
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['heading'] ?></h5>
-              <a href="forum-details/id=<?php echo $row['forum_id'] ?>">
+              <a href="forum-details.php?id=<?php echo $row['forum_id'] ?>">
                 <p class="card-text"><?php echo substr($details, 0, 220) ?>........ </p>
               </a>
             </div>

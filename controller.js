@@ -10,6 +10,7 @@ function cleardata() {
     document.getElementById("confirmPassword").value = "";
 }
 
+// For adding signup data
 $("#signup").on("click", function (e) {
   e.preventDefault();
   let contact = document.getElementById("contact").value;
@@ -91,5 +92,59 @@ $("#signup").on("click", function (e) {
       $(".loader-wrapper").hide();
 
     },
+  });
+});
+
+$("#comment-submit").on("click", function () {
+  let forum_id = document.getElementById('forum_id').value;
+  let comment = document.getElementById('comment').value;
+
+  if(comment == ""){
+    document.getElementById("liveToast").style.backgroundColor = "#ff493d";
+    document.getElementById(
+      "toast-body"
+    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light">Comment Field is Blank </h6>`;
+    toast.show();
+    return;
+  }
+
+  console.log(forum_id);
+  console.log(comment);
+  $(".loader-wrapper").css("visibility", "visible");
+  $(".loader-wrapper").show();
+  $(".loader").show();
+
+  $.ajax({
+    url: "add-comments.php",
+    type: "POST",
+    data: {
+      forum_id : forum_id,
+      comment : comment
+    },
+    success : function (data){
+      // console.log(data);
+
+      document.getElementById('comment').value = "";
+
+      if( data == "Comment Added Successfully"){
+        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${data}</h6>`;
+        toast.show();
+      }else{
+        document.getElementById("liveToast").style.backgroundColor = "#dc3545";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${data}</h6>`;
+        toast.show();
+      }
+
+      $(".loader").hide();
+      $(".loader-wrapper").css("visibility", "hidden");
+      $(".loader-wrapper").hide();
+      document.location.reload();
+    } 
+
   });
 });

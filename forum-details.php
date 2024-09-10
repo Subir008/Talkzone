@@ -1,3 +1,6 @@
+<?php
+include("db/db.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,75 +29,75 @@
     </div>
     <!-- Loader End -->
 
+    <!-- Fetching the forum details based on id -->
+    <?php
+    $id = $_GET['id'];
+    $query = "SELECT * FROM forum WHERE forum_id =  '$id ' ";
+    $dataget = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($dataget);
+    ?>
+
     <div class="container top-section">
         <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-                <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one
-                    in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it
-                    to your liking.</p>
-                <button class="btn btn-primary btn-lg" type="button">Example button</button>
+            <div class="container-fluid ">
+                <?php
+                if ($row['forum_img'] != "") {
+                    ?>
+                    <img src="image/java.jpg" class="forum-img" alt="...">
+                    <?php
+                }
+                ?>
+                <h1 class="display-5 fw-bold"><?php echo $row['heading'] ?></h1>
+                <p class="col-md-12 fs-4"><?php echo $row['details'] ?></p>
+
             </div>
         </div>
 
-      
+        <div class="container">
+            <h3 class="my-3">Add Your Comments Here</h3>
+            <div class="mb-3">
+                <input type="hidden" name="forum_id" id="forum_id" value="<?php echo $id ?>">
+                <label for="comment" class="form-label">Comment</label>
+                <textarea class="form-control" id="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="comment-submit">Submit</button>
+        </div>
 
+        <h2 class="my-4">Read All The Comments</h2>
         <div class="container-fluid">
             <div class="card mb-3" style="">
-                <h2>Comments</h2>
-                <div class="row g-0">
-                    <div class="col-md-1 text-center comment-user">
-                        <i class="fa-solid fa-circle-user fa-2x"></i>
-                    </div>
-                    <div class="col-md-11">
-                        <div class="card-body card-details">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+                <?php
+                $comment_query = "SELECT * FROM comment_master WHERE forum_id = '" . $id . "'";
+                $comment_dataget = mysqli_query($con, $comment_query);
+                while ($comment_data = mysqli_fetch_assoc($comment_dataget)) {
+                    ?>
+                    <div class="row g-0 px-2 comment-user">
+                        <div class="col-md-1 col-sm-1 col-1 text-center ">
+                            <i class="fa-solid fa-circle-user fa-2x"></i>
+                        </div>
+                        <div class="col-md-11 col-sm-11 col-11">
+                            <div class="card-body card-details">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><?php echo $comment_data['comment_details'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-md-1 text-center comment-user">
-                        <i class="fa-solid fa-circle-user fa-2x"></i>
-                    </div>
-                    <div class="col-md-11">
-                        <div class="card-body card-details">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-md-1 text-center comment-user">
-                        <i class="fa-solid fa-circle-user fa-2x"></i>
-                    </div>
-                    <div class="col-md-11">
-                        <div class="card-body card-details">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-md-1 text-center comment-user">
-                        <i class="fa-solid fa-circle-user fa-2x"></i>
-                    </div>
-                    <div class="col-md-11">
-                        <div class="card-body card-details">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
 
     </div>
 
+    <!-- Toaster Start -->
+    <div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body p-4" id="toast-body">
+            </div>
+        </div>
+    </div>
+    <!-- Toaster End -->
 
     <?php
     include("components/footer.php");
