@@ -82,6 +82,9 @@
 }
 /* Carousel End  */
 
+
+/*  */
+/* Forum details page start */
 .forum-container{
   padding-bottom: 7rem;
   padding-top: 3rem;
@@ -101,7 +104,29 @@
   padding-bottom: 7rem;
 }
 
-.comment-user i{
+.forum-img{
+  height: 35rem;
+}
+
+@media only screen and (min-width:900px) and (max-width:1600px){
+.comment-user .col-md-1{
+  width: 5.333333%;
+}
+.comment-user .col-md-11{
+  width:94.666667%;
+}
+}
+
+@media only screen and (max-width:500px){
+.comment-user .col-md-1{
+  width: 13.333333%; 
+}
+.comment-user .col-md-11{
+  width: 86.666667%;
+}
+}
+
+.comment-user div i{
   padding-top: 2rem;
 }
 
