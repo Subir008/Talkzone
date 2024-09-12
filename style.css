@@ -6,10 +6,6 @@
   .text-small {
     font-size: 85%;
   }
-  
-  body {
-    /* min-height: 50rem; */
-  }
 
   html{
     max-height: 90vh;
@@ -21,6 +17,10 @@
 
   .login-dropdown {
        transform: translate3d(-99px, 5.2px, 0px);
+    }
+
+    .dropdown-menu{
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
     }
 
   @media only screen and (max-width:760px) {
@@ -82,6 +82,16 @@
 }
 /* Carousel End  */
 
+.alert{
+  display: none;
+  top: 73px;
+  margin-bottom: 0;
+  z-index: 999;
+}
+
+.alert strong p{
+  margin: 0;
+}
 
 /*  */
 /* Forum details page start */
@@ -106,6 +116,7 @@
 
 .forum-img{
   height: 35rem;
+  width: 100%;
 }
 
 @media only screen and (min-width:900px) and (max-width:1600px){
