@@ -28,13 +28,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
@@ -53,7 +50,7 @@
 
             <div class="login mx-3">
                 <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
-                    data-bs-target="#loginModal">Login</button>
+                    data-bs-target="#loginModal" onclick="clearlogindata()">Login</button>
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                     data-bs-target="#signupModal" onclick="cleardata()">Sign-up</button>
             </div>
@@ -80,6 +77,11 @@
     </div>
 </nav>
 
+<!-- Alert Start -->
+<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">
+</div>
+<!-- Alert End -->
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -89,11 +91,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <form id="loginform">
+                <!-- <form action="signup.php" method="post"> -->
+                    <div class="mb-3">
+                        <label for="login_contact" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="login_contact" name="login_contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here"  pattern="[0-9]{10}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="login_password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="login_password" name="login_password" autocomplete="off" required placeholder="Enter Your Password Here">
+                    </div>
+                   <div class="mb-3 text-center">
+                       <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal" >Cancel</button>
+                       <button type="submit" class="btn btn-primary col-5" id="login">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
