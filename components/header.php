@@ -48,37 +48,54 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
-            <div class="login mx-3">
-                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
-                    data-bs-target="#loginModal" onclick="clearlogindata()">Login</button>
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                    data-bs-target="#signupModal" onclick="cleardata()">Sign-up</button>
-            </div>
+            <?php
+            if ($login == "No") {
 
-            <!-- Hide in mobile view -->
-            <div class="dropdown login mobile-view-off mr-3">
-                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
-                    <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
-                </a>
-                <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
+                ?>
+                <div class="login mx-3">
+                    <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
+                        data-bs-target="#loginModal" onclick="clearlogindata()">Login</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signupModal"
+                        onclick="cleardata()">Sign-up</button>
+                </div>
+
+                <?php
+            }
+            ?>
+
+            <?php
+            if ($login == "Yes") {
+                ?>
+                <!-- Hide in mobile view -->
+                <div class="dropdown login mobile-view-off mr-3">
+                    <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+                        <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
+                    </a>
+                    <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                    </ul>
+                </div>
+                <?php
+            }
+            ?>
 
         </div>
     </div>
+    <?php
+        echo $login;
+    ?>
 </nav>
 
 <!-- Alert Start -->
-<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">
+<div id="alert">
 </div>
 <!-- Alert End -->
 
@@ -91,19 +108,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form id="loginform">
-                <!-- <form action="signup.php" method="post"> -->
+                <form id="loginform">
+                    <!-- <form action="signup.php" method="post"> -->
                     <div class="mb-3">
                         <label for="login_contact" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="login_contact" name="login_contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here"  pattern="[0-9]{10}" >
+                        <input type="tel" class="form-control" id="login_contact" name="login_contact"
+                            aria-describedby="emailHelp" autocomplete="off" required
+                            placeholder="Enter Your Contact Here" pattern="[0-9]{10}">
                     </div>
                     <div class="mb-3">
                         <label for="login_password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="login_password" name="login_password" autocomplete="off" required placeholder="Enter Your Password Here">
+                        <input type="password" class="form-control" id="login_password" name="login_password"
+                            autocomplete="off" required placeholder="Enter Your Password Here">
                     </div>
-                   <div class="mb-3 text-center">
-                       <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal" >Cancel</button>
-                       <button type="submit" class="btn btn-primary col-5" id="login">Submit</button>
+                    <div class="mb-3 text-center">
+                        <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary col-5" id="login">Submit</button>
                     </div>
                 </form>
             </div>
@@ -122,22 +142,25 @@
             </div>
             <div class="modal-body">
                 <form id="signupform">
-                <!-- <form action="signup.php" method="post"> -->
+                    <!-- <form action="signup.php" method="post"> -->
                     <div class="mb-3">
                         <label for="contact" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact" name="contact" aria-describedby="emailHelp"  autocomplete="off" required placeholder="Enter Your Contact Here"  pattern="[0-9]{10}" >
+                        <input type="tel" class="form-control" id="contact" name="contact" aria-describedby="emailHelp"
+                            autocomplete="off" required placeholder="Enter Your Contact Here" pattern="[0-9]{10}">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" autocomplete="off" required placeholder="Enter Your Password Here">
+                        <input type="password" class="form-control" id="password" name="password" autocomplete="off"
+                            required placeholder="Enter Your Password Here">
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" autocomplete="off" required placeholder="Confirm Your Password ">
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                            autocomplete="off" required placeholder="Confirm Your Password ">
                     </div>
-                   <div class="mb-3 text-center">
-                       <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal" >Cancel</button>
-                       <button type="submit" class="btn btn-primary col-5" id="signup">Submit</button>
+                    <div class="mb-3 text-center">
+                        <button type="button" class="btn btn-danger col-5 close" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary col-5" id="signup">Submit</button>
                     </div>
                 </form>
             </div>

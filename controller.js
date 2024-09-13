@@ -121,6 +121,9 @@ $("#login").on("click", function (e) {
     return;
   }
 
+  $(".loader-wrapper").css("visibility", "visible");
+  $(".loader-wrapper").show();
+  $(".loader").show();
   $.ajax({
     url : "login.php",
     type : "POST",
@@ -130,11 +133,44 @@ $("#login").on("click", function (e) {
     },
     success : function (data){
       console.log(data);
-      if (data == "Invalid Contact"){
+      if (data == "Login Successfull"){
+        $("#loginModal").modal("hide");
+        $('html, body').animate({
+          scrollTop: $("#alert").offset().top
+        }, );
         $("#alert").css("display","block");
-       document.getElementById('alert').innerHTML = `<strong><p> ${data} </p></strong>
-       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+          document.getElementById('alert').innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+           <strong><p> ${data} </p></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+
+          window.location.href = "index.php";
       }
+     else if (data == "Invalid Contact"){
+          $("#loginModal").modal("hide");
+          $('html, body').animate({
+            scrollTop: $("#alert").offset().top
+        }, );
+        $("#alert").css("display","block");
+       document.getElementById('alert').innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       <strong><p> ${data}!!! </p></strong>
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>`;
+      }
+      else if (data == "Invalid Password"){
+        $("#loginModal").modal("hide");
+        $('html, body').animate({
+          scrollTop: $("#alert").offset().top
+        }, );
+        $("#alert").css("display","block");
+       document.getElementById('alert').innerHTML = `<div class="alert  alert-danger alert-dismissible fade show" role="alert">
+       <strong><p> ${data}!!! </p></strong>
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>`;
+      }
+
+      $(".loader").hide();
+      $(".loader-wrapper").css("visibility", "hidden");
+      $(".loader-wrapper").hide();
     },
   });
 });
