@@ -1,5 +1,6 @@
 <?php
 include("db/db.php");
+
 ?>
 <!doctype html>
 <html lang="en">

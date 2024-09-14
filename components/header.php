@@ -1,3 +1,6 @@
+<?php
+include("login.php");
+?>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark p-3">
     <div class="container-fluid">
 
@@ -49,7 +52,7 @@
             </form>
 
             <?php
-            if ($login == "No") {
+            if (!isset($_SESSION['login']) || $_SESSION['login'] == "No") {
 
                 ?>
                 <div class="login mx-3">
@@ -64,7 +67,7 @@
             ?>
 
             <?php
-            if ($login == "Yes") {
+            if (isset($_SESSION['login']) && $_SESSION['login'] == "Yes") {
                 ?>
                 <!-- Hide in mobile view -->
                 <div class="dropdown login mobile-view-off mr-3">
@@ -80,7 +83,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                        <li><a class="dropdown-item" id="logged-out">Sign out</a></li>
                     </ul>
                 </div>
                 <?php
@@ -89,9 +92,6 @@
 
         </div>
     </div>
-    <?php
-        echo $login;
-    ?>
 </nav>
 
 <!-- Alert Start -->

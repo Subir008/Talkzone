@@ -1,6 +1,8 @@
 <?php
     include ("db/db.php");
-    // $_SESSION['login'] = "No";
+    session_start();
+
+    // $_SESSION['login'] = "";
     // $login = "";
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -13,20 +15,22 @@
 
         if (mysqli_num_rows($contact_query) > 0){
             if(password_verify($password ,$db_password)){
-                session_start();
                 $_SESSION['user_contact'] = $result['user_contact'];
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['user_name'] = $result['user_name'];
-                $login = "Yes";
+                $_SESSION['login'] = "Yes";
+                // $login = "Yes";
 
                 echo "Login Successfull";
 
             }else{
-                $login = "No";
+                $_SESSION['login'] = "No";
+                // $login = "No";
                 echo "Invalid Password";
             }
         }else{
-            $login = "No";
+            $_SESSION['login'] = "No";
+            // $login = "No";
             echo "Invalid Contact";
         }
 
