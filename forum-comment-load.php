@@ -11,7 +11,7 @@
         $page = 0;
     }
 
-    $comment_query = "SELECT * FROM comment_master WHERE forum_id = '" . $id . "' ORDER BY entry_timestamp DESC LIMIT {$page},$limit";
+    $comment_query = "SELECT * FROM comment_master WHERE forum_id = '" . $id . "' LIMIT {$page},$limit";
     $comment_dataget = mysqli_query($con, $comment_query);
 
     if(mysqli_num_rows($comment_dataget) > 0){
@@ -34,14 +34,14 @@
     }
 
     $output .= "
-            <div class='row g-0 d-flex justify-content-center mb-4'>
-                <button type='button' class='btn btn-outline-primary btn-md col-6 ' data-id='{$last_id}'>Load More</button>
+            <div class='row g-0 d-flex justify-content-center mb-4 ' id='pagination'>
+                <button type='button' class='btn btn-outline-primary btn-md col-6' id='loadmore' data-id='{$last_id}'>Load More</button>
             </div>";
 
     echo $output;
 
 }else{
-    echo "No comments found";
+    echo "";
 }
 
 mysqli_close($con);

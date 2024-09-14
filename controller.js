@@ -18,6 +18,7 @@ $(document).ready(function (){
   
   // console.log(id);
 
+  // Comment Load section
   function loadComment(page) {
     $.ajax({
       url: "forum-comment-load.php",
@@ -27,12 +28,23 @@ $(document).ready(function (){
         id : id
       },
       success : function (data) {
-        $("#comment-box").append(data);
+        if(data){
+          $('#pagination').remove();
+          $("#comment-box").append(data);
+        }else{
+          $('#loadmore').html("No more comments to load");
+          $('#loadmore').prop("disabled",true);
+        }
       }
     });
-
   }
   loadComment();
+
+  $(document).on("click" , "#loadmore" , function () {
+    var pid = $(this).data("id");
+    $('#loadmore').html("loading ....");
+    loadComment(pid);
+  });
 });
 
 // For clearing signup form
