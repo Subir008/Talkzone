@@ -38,7 +38,7 @@ include("db/db.php");
     ?>
 
     <div class="container top-section">
-        <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="p-5 mb-4 bg-light rounded-3 ">
             <div class="container-fluid ">
                 <?php
                 if ($row['forum_img'] != "") {
@@ -53,38 +53,29 @@ include("db/db.php");
             </div>
         </div>
 
+        <h2 class="my-3">Add Your Comments Here</h2>
         <div class="container">
-            <h3 class="my-3">Add Your Comments Here</h3>
+            <?php
+            if (isset($_SESSION['login']) && $_SESSION['login'] == "Yes") {
+                ?>
             <div class="mb-3">
                 <input type="hidden" name="forum_id" id="forum_id" value="<?php echo $id ?>">
                 <label for="comment" class="form-label">Comment</label>
                 <textarea class="form-control" id="comment" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" id="comment-submit">Submit</button>
+            <?php
+            }else{
+                ?>
+            <p>Please Log In To Add Comment</p>
+            <?php
+            }
+            ?>
         </div>
 
         <h2 class="my-4">Read All The Comments</h2>
         <div class="container-fluid">
-            <div class="card mb-3" style="">
-                <?php
-                $comment_query = "SELECT * FROM comment_master WHERE forum_id = '" . $id . "'";
-                $comment_dataget = mysqli_query($con, $comment_query);
-                while ($comment_data = mysqli_fetch_assoc($comment_dataget)) {
-                    ?>
-                    <div class="row g-0 px-2 comment-user">
-                        <div class="col-md-1 col-sm-1 col-1 text-center ">
-                            <i class="fa-solid fa-circle-user fa-2x"></i>
-                        </div>
-                        <div class="col-md-11 col-sm-11 col-11">
-                            <div class="card-body card-details">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text"><?php echo $comment_data['comment_details'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
+            <div class="card mb-3" id="comment-box" style="">                
             </div>
         </div>
 

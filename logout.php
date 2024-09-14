@@ -7,7 +7,5 @@
 
     session_destroy();
 
-    // $_SESSION['logged-out'] = "Yes";
-
     echo "You Have Been Logged Out Successfully. Please Login To Continue......";
 ?>

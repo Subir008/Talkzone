@@ -96,6 +96,10 @@
   margin: 0;
 }
 
+.dropdown-item {
+  cursor: pointer;
+}
+
 /*  */
 /* Forum details page start */
 .forum-container{
@@ -132,13 +136,21 @@
 }
 
 @media only screen and (max-width:500px){
-.comment-user .col-md-1{
-  width: 13.333333%; 
+  .comment-user .col-md-1{
+    width: 13.333333%; 
+  }
+  .comment-user .col-md-11{
+    width: 86.666667%;
+  }
+
+  .top-section div{
+    padding: 10px !important;
+  }
 }
-.comment-user .col-md-11{
-  width: 86.666667%;
-}
-}
+
+/* @media only screen and (max-width:5) {
+  
+} */
 
 .comment-user div i{
   padding-top: 2rem;

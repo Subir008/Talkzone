@@ -3,6 +3,38 @@ const toast = new bootstrap.Toast(toastLiveExample);
 const loader = document.querySelector(".loader");
 const loaderwrapper = document.querySelector(".loader-wrapper");
 
+$(document).ready(function (){
+
+  // Storing the search parameter from the url in a variable 
+  // For example, if the current URL is https://example.com/path?a=1&b=2&id=123, 
+  // the KeyValues variable would hold the string "?a=1&b=2&id=123".
+  const KeyValues = window.location.search;
+
+  // Creating a URLSearchParams Object
+  const urlParam = new URLSearchParams(KeyValues);
+
+  // Extracting the 'id' Parameter from the url parameter
+  const id = urlParam.get('id');
+  
+  // console.log(id);
+
+  function loadComment(page) {
+    $.ajax({
+      url: "forum-comment-load.php",
+      type: "POST",
+      data: { 
+        page_no : page,
+        id : id
+      },
+      success : function (data) {
+        $("#comment-box").append(data);
+      }
+    });
+
+  }
+  loadComment();
+});
+
 // For clearing signup form
 function cleardata() {
   document.getElementById("contact").value = "";
@@ -177,12 +209,11 @@ $("#login").on("click", function (e) {
 });
 
 //For logout functionlity
-$("#logged-out").on("click", function (e) {
+$(".logged-out").on("click", function (e) {
   e.preventDefault();
 
   $.ajax({
     url: 'logout.php',
-    // type: "POST",
     success: function (data) {
       // console.log(data);
 
@@ -199,6 +230,7 @@ $("#logged-out").on("click", function (e) {
   });
 });
 
+// Comment Submiting to the dB
 $("#comment-submit").on("click", function () {
   let forum_id = document.getElementById("forum_id").value;
   let comment = document.getElementById("comment").value;
@@ -251,3 +283,5 @@ $("#comment-submit").on("click", function () {
     },
   });
 });
+
+
