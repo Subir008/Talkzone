@@ -5,22 +5,28 @@ include("login.php");
     <div class="container-fluid">
 
         <!-- Show in mobile view -->
-        <div class="dropdown login mobile-view-on mr-3">
-            <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
-                <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
-            </a>
-            <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-        </div>
+        <?php
+        if (isset($_SESSION['login']) && $_SESSION['login'] == "Yes") {
+            ?>
+            <div class="dropdown login mobile-view-on mr-3">
+                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+                    <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
+                </a>
+                <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item logged-out" href="#" id="">Sign out</a></li>
+                </ul>
+            </div>
+            <?php
+        }
+        ?>
 
         <a class="navbar-brand" href="#">Fixed navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -70,7 +76,7 @@ include("login.php");
             if (isset($_SESSION['login']) && $_SESSION['login'] == "Yes") {
                 ?>
                 <!-- Hide in mobile view -->
-                <div class="dropdown login mobile-view-off mr-3">
+                <div class="dropdown login mobile-view-off mx-3 ">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
@@ -79,11 +85,11 @@ include("login.php");
                     <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">New project...</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" id="logged-out">Sign out</a></li>
+                        <li><a class="dropdown-item logged-out" >Log out</a></li>
                     </ul>
                 </div>
                 <?php
