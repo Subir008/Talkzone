@@ -1,5 +1,5 @@
 <?php
-    include ("db/db.php");
+    // include ("db/db.php");
 
     session_start();
 
@@ -7,8 +7,7 @@
 
     session_destroy();
 
-    // $login = "No";
+    // $_SESSION['logged-out'] = "Yes";
 
-    header("location : index.php");
-
+    echo "You Have Been Logged Out Successfully. Please Login To Continue......";
 ?>
