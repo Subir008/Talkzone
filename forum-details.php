@@ -52,7 +52,7 @@ include("db/db.php");
 
             </div>
         </div>
-
+        
         <h2 class="my-3">Add Your Comments Here</h2>
         <div class="container">
             <?php
@@ -60,6 +60,7 @@ include("db/db.php");
                 ?>
             <div class="mb-3">
                 <input type="hidden" name="forum_id" id="forum_id" value="<?php echo $id ?>">
+                <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id'] ?>">
                 <label for="comment" class="form-label">Comment</label>
                 <textarea class="form-control" id="comment" rows="3"></textarea>
             </div>

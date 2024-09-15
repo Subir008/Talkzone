@@ -11,7 +11,12 @@
         $page = 0;
     }
 
-    $comment_query = "SELECT * FROM comment_master WHERE forum_id = '" . $id . "' LIMIT {$page},$limit";
+    $comment_query = "SELECT comment_master.comment_id ,comment_master.comment_details ,comment_master.entry_timestamp , user_master.user_name  
+                            FROM comment_master
+                            LEFT JOIN user_master ON user_master.user_id = comment_master.user_id 
+                            WHERE comment_master.forum_id = '" . $id . "'
+                            LIMIT {$page},$limit ";
+
     $comment_dataget = mysqli_query($con, $comment_query);
 
     if(mysqli_num_rows($comment_dataget) > 0){
@@ -26,7 +31,7 @@
                 </div>
                 <div class='col-md-11 col-sm-11 col-11'>
                     <div class='card-body card-details'>
-                        <h5 class='card-title'>Card title</h5>
+                        <h5 class='card-title'>{$comment_data["user_name"]} at {$comment_data["entry_timestamp"]}</h5>
                         <p class='card-text'> {$comment_data["comment_details"]}</p>
                     </div>
                 </div>

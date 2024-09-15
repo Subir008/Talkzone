@@ -246,6 +246,7 @@ $(".logged-out").on("click", function (e) {
 $("#comment-submit").on("click", function () {
   let forum_id = document.getElementById("forum_id").value;
   let comment = document.getElementById("comment").value;
+  let user_id = document.getElementById("user_id").value;
 
   if (comment == "") {
     document.getElementById("liveToast").style.backgroundColor = "#ff493d";
@@ -258,6 +259,7 @@ $("#comment-submit").on("click", function () {
 
   console.log(forum_id);
   console.log(comment);
+  console.log(user_id);
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
@@ -268,6 +270,7 @@ $("#comment-submit").on("click", function () {
     data: {
       forum_id: forum_id,
       comment: comment,
+      user_id: user_id,
     },
     success: function (data) {
       // console.log(data);
