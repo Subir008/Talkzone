@@ -4,6 +4,7 @@
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $comment = $_POST['comment'];
         $forum_id = $_POST['forum_id'];
+        $user_id = $_POST['user_id'];
 
         // echo "comment " . $comment;
 
@@ -14,7 +15,7 @@
                                             `entry_timestamp`) VALUES (
                                             '".$comment."',
                                             '".$forum_id."', 
-                                            '', 
+                                            '$user_id', 
                                             '". $timestamp."')";
 
         $result = mysqli_query($con, $query);
