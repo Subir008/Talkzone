@@ -148,10 +148,6 @@
   }
 }
 
-/* @media only screen and (max-width:5) {
-  
-} */
-
 .comment-user div i{
   padding-top: 2rem;
 }
@@ -173,3 +169,34 @@ footer .container {
   padding: 0 15px;
 }
 /* Footer end */
+
+/* Profile section start */
+
+.image-section{
+  padding: 1rem;
+}
+
+.profile-img{
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width:768px) {
+  .image-section{
+    padding: 0rem;
+  }
+  .divider{
+    display: none;
+  }
+}
+@media only screen and (min-width:768px) {
+  .divider{
+    height: 44rem;
+    border: 1px solid #dce0e5;
+  }
+}
+
+
+
+/* Profile section end */

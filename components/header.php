@@ -15,8 +15,7 @@ include("login.php");
                     <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
                 </a>
                 <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="new-discussion.php">New Discussion</a></li>
                     <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                     <li>
                         <hr class="dropdown-divider">
@@ -83,8 +82,7 @@ include("login.php");
                         <i class="fa-solid fa-user fa-lg" style="color: #fffff;"></i>
                     </a>
                     <ul class="dropdown-menu text-small login-dropdown" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="new-discussion.php">New Discussion</a></li>
                         <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
