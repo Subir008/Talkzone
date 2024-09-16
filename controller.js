@@ -249,7 +249,7 @@ $("#comment-submit").on("click", function () {
   let user_id = document.getElementById("user_id").value;
 
   if (comment == "") {
-    document.getElementById("liveToast").style.backgroundColor = "#ff493d";
+    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
     document.getElementById(
       "toast-body"
     ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light">Comment Field is Blank </h6>`;
@@ -257,9 +257,9 @@ $("#comment-submit").on("click", function () {
     return;
   }
 
-  console.log(forum_id);
-  console.log(comment);
-  console.log(user_id);
+  // console.log(forum_id);
+  // console.log(comment);
+  // console.log(user_id);
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
@@ -299,4 +299,71 @@ $("#comment-submit").on("click", function () {
   });
 });
 
+// Adding new discussion
+$("#discussion-submit").on("click" , function (e) {
+
+  e.preventDefault();
+  // Getting the value from user
+  let userId = document.getElementById("user_id").value;
+  let discussiontitle = document.getElementById("discussion-title").value; 
+  let discussiondetails = document.getElementById("discussion-details").value; 
+
+  // Toaster of error if blank
+  if(discussiontitle == ""){
+    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
+    document.getElementById(
+      "toast-body"
+    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light"> Discussion Title is Blank </h6>`;
+    toast.show();
+    return;
+  }
+
+  if(discussiondetails == ""){
+    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
+    document.getElementById(
+      "toast-body"
+    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light">Discussion Details is Blank </h6>`;
+    toast.show();
+    return;
+  }
+
+  //Showing the toaster
+  $(".loader-wrapper").css("visibility", "visible");
+  $(".loader-wrapper").show();
+  $(".loader").show();
+
+  $.ajax({
+    url: "add-discussion.php",
+    type: "POST",
+    data: {
+      userId: userId,
+      discussiontitle: discussiontitle,
+      discussiondetails: discussiondetails
+    },
+    success: function (data) {
+      if(data == "success"){
+        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${data}</h6>`;
+        toast.show();
+      } else {
+        document.getElementById("liveToast").style.backgroundColor = "#dc3545";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${data}</h6>`;
+        toast.show();
+      }
+
+      // Closing the toaster
+      $(".loader").hide();
+      $(".loader-wrapper").css("visibility", "hidden");
+      $(".loader-wrapper").hide();
+      document.location.reload();
+    }
+
+  });
+
+
+});
 

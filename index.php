@@ -106,7 +106,7 @@ include("components/header.php");
 </div>
 
 <!-- Toaster Start -->
-<div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px">
+<div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px; bottom: 13px !important;">
   <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-body p-4" id="toast-body">
     </div>
