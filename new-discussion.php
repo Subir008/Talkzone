@@ -31,6 +31,7 @@
         <div class="col-9 ">
         <h2 class="text-center">Start New Discussion</h2>
         <form>
+        <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id'] ?>">
             <div class="mb-3">
                 <label for="discussion-title" class="form-label">Discussion Title</label>
                 <input type="text" class="form-control" id="discussion-title" aria-describedby="">
@@ -44,12 +45,21 @@
                 <input type="file" class="form-control" id="discussion-img" aria-describedby="">
             </div>
             <div class="mb-3 pt-4 text-center ">
-                <button type="submit" class="btn btn-primary col-5" id="signup">Submit</button>
+                <button type="submit" class="btn btn-primary col-5" id="discussion-submit">Submit</button>
             </div>
         </form>
         </div>
         </div>
     </div>
+
+    <!-- Toaster Start -->
+    <div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px; bottom: 13px !important;">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body p-4" id="toast-body">
+            </div>
+        </div>
+    </div>
+    <!-- Toaster End -->
 
     <?php
     include("components/footer.php");

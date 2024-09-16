@@ -122,7 +122,7 @@
 }
 
 .forum-img{
-  height: 35rem;
+  /* height: 35rem; */
   width: 100%;
 }
 
@@ -143,7 +143,7 @@
     width: 86.666667%;
   }
 
-  .top-section div{
+  .top-section .inner-top-section{
     padding: 10px !important;
   }
 }
