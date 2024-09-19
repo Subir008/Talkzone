@@ -15,5 +15,10 @@
     }
 
     $timestamp = date("Y-m-d H:i:s"); 
+    $curentdate = date('d-m-Y');
+
+    // Allowed file with extension name
+    $allowed_extension = array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'webp', 'tiff', 'tif');
+    $inputAllowedImage = '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
 
 ?>

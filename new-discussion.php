@@ -1,3 +1,6 @@
+<?php
+    include ("db/db.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +45,7 @@
             </div>
             <div class="mb-3">
                 <label for="discussion-img" class="form-label">Discussion Image</label>
-                <input type="file" class="form-control" id="discussion-img" aria-describedby="" name="file">
+                <input type="file" class="form-control" id="discussion-img" aria-describedby="" name="file" accept="<?php echo $inputAllowedImage ?>">
             </div>
             <div class="mb-3 pt-4 text-center ">
                 <button type="submit" class="btn btn-primary col-5" >Submit</button>
@@ -53,7 +56,7 @@
     </div>
 
     <!-- Toaster For Image  -->
-    <div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px; bottom: 140px !important;">
+    <div class="position-fixed bottom-0 end-1 me-2" style="z-index: 9999; opacity: 99; left:10px; bottom: 130px !important;">
         <div id="liveToastImage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body p-4" id="image-toast-body">
             </div>

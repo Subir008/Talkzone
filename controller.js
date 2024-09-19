@@ -1,6 +1,6 @@
 const toastLiveExample = document.getElementById("liveToast");
-const toastliveToastImage = document.getElementById("liveToastImage");
 const toast = new bootstrap.Toast(toastLiveExample);
+const toastliveToastImage = document.getElementById("liveToastImage");
 const imagetoast = new bootstrap.Toast(liveToastImage);
 const loader = document.querySelector(".loader");
 const loaderwrapper = document.querySelector(".loader-wrapper");
@@ -345,7 +345,8 @@ $("#discussion-submit").on("submit" , function (e) {
       let imageUploadStatus = resultArray[0];
       let discussionAddedStatus = resultArray[1];
 
-      if(imageUploadStatus == "Discussion Added Successfully"){ 
+      // Toaster of Image Submission
+      if(imageUploadStatus == "Image Uploaded Successfully"){ 
         document.getElementById("liveToastImage").style.backgroundColor = "#1aa179";
         document.getElementById(
           "image-toast-body"
@@ -359,6 +360,7 @@ $("#discussion-submit").on("submit" , function (e) {
         imagetoast.show();
       }
       
+      // Toaster of discussion submission
       if(discussionAddedStatus == "Discussion Added Successfully"){
         document.getElementById("liveToast").style.backgroundColor = "#1aa179";
         document.getElementById(
@@ -377,7 +379,7 @@ $("#discussion-submit").on("submit" , function (e) {
       $(".loader").hide();
       $(".loader-wrapper").css("visibility", "hidden");
       $(".loader-wrapper").hide();
-      // document.location.reload();
+      document.location.reload();
     }
 
   });
