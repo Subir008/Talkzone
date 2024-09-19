@@ -1,5 +1,7 @@
 const toastLiveExample = document.getElementById("liveToast");
+const toastliveToastImage = document.getElementById("liveToastImage");
 const toast = new bootstrap.Toast(toastLiveExample);
+const imagetoast = new bootstrap.Toast(liveToastImage);
 const loader = document.querySelector(".loader");
 const loaderwrapper = document.querySelector(".loader-wrapper");
 
@@ -257,9 +259,6 @@ $("#comment-submit").on("click", function () {
     return;
   }
 
-  // console.log(forum_id);
-  // console.log(comment);
-  // console.log(user_id);
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
@@ -300,11 +299,10 @@ $("#comment-submit").on("click", function () {
 });
 
 // Adding new discussion
-$("#discussion-submit").on("click" , function (e) {
+$("#discussion-submit").on("submit" , function (e) {
 
   e.preventDefault();
   // Getting the value from user
-  let userId = document.getElementById("user_id").value;
   let discussiontitle = document.getElementById("discussion-title").value; 
   let discussiondetails = document.getElementById("discussion-details").value; 
 
@@ -335,23 +333,43 @@ $("#discussion-submit").on("click" , function (e) {
   $.ajax({
     url: "add-discussion.php",
     type: "POST",
-    data: {
-      userId: userId,
-      discussiontitle: discussiontitle,
-      discussiondetails: discussiondetails
-    },
+    data: new FormData(this),
+    contentType: false,
+    processData : false,
     success: function (data) {
-      if(data == "success"){
+      console.log(data);
+      let text = data ;
+
+      // Split the text into an array using the <br> tag as the separator
+      let resultArray =  text.split('<br>');
+      let imageUploadStatus = resultArray[0];
+      let discussionAddedStatus = resultArray[1];
+
+      if(imageUploadStatus == "Discussion Added Successfully"){ 
+        document.getElementById("liveToastImage").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "image-toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${imageUploadStatus}</h6>`;
+        imagetoast.show();
+      }else{
+        document.getElementById("liveToastImage").style.backgroundColor = "#dc3545";
+        document.getElementById(
+          "image-toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${imageUploadStatus}</h6>`;
+        imagetoast.show();
+      }
+      
+      if(discussionAddedStatus == "Discussion Added Successfully"){
         document.getElementById("liveToast").style.backgroundColor = "#1aa179";
         document.getElementById(
           "toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${data}</h6>`;
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${discussionAddedStatus}</h6>`;
         toast.show();
-      } else {
+      }else{
         document.getElementById("liveToast").style.backgroundColor = "#dc3545";
         document.getElementById(
           "toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${data}</h6>`;
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${discussionAddedStatus}</h6>`;
         toast.show();
       }
 
@@ -359,7 +377,7 @@ $("#discussion-submit").on("click" , function (e) {
       $(".loader").hide();
       $(".loader-wrapper").css("visibility", "hidden");
       $(".loader-wrapper").hide();
-      document.location.reload();
+      // document.location.reload();
     }
 
   });
