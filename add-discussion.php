@@ -1,3 +1,4 @@
+
 <?php
 include("db/db.php");
 
@@ -13,35 +14,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Store the uploaded file name
         $filename = $_FILES['file']['name'];
 
+        $split_filename = explode('.', $filename);
+
+        $name = $split_filename[0];
+        // echo $name;
+
         // Store the uploaded file extension
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-        // Allowed file with extension name
-        $allowed_extension = array('png', 'jpg', 'jpeg');
+        $new_name = $name . "_" . $curentdate . "." . $extension;
 
         // Check the uploaded extension is present in the allowed extension or not
         if (in_array($extension, $allowed_extension)) {
-            // $new_name = $filename . "." . $extension;
-            $path = "image/thread-img/" . $filename;
+            $path = "image/thread-img/" . $new_name;
             if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
                 echo "Image Uploaded Successfully";
                 echo "<br>";
                 $file_upload = true;
+            } else {
+                echo 'ERROR Uploading File';
+                echo "<br>";
             }
         } else {
-            echo 'ERROR Uploading File';
+            echo 'ERROR: File extension not allowed.';
             echo "<br>";
         }
+    }else{
+        echo 'ERROR: No file selected';
+        echo "<br>";
     }
 
     // Storing file name as null if file is not upload by user
     if ($file_upload == false) {
-        $filename = NULL;
+        $new_name = NULL;
     }
 
     $userId = $_POST['user_id'];
     $title = $_POST['discussion-title'];
     $details = $_POST['discussion-details'];
+
+    $title = str_replace("<" , "&lt;" , $title);
+    $title = str_replace(">" , "&gt;" , $title);
+    $title = str_replace("\"" , "&quot;" , $title);
+    $title = str_replace("\'" , "&apos;" , $title);
+    $title = str_replace("\\" , "&frasl;" , $title);
+
+    $details = str_replace("<", "&lt;", $details);
+    $details = str_replace(">", "&gt;" , $details);
+    $details = str_replace("\'", "&apos;" , $details);
+    $details = str_replace("\"", "&quot;" , $details);
+    $details = str_replace("=", "&equals;" , $details); 
+    $details = str_replace(",", "&comma;" , $details); 
 
     $query = "INSERT INTO `forum` (
                                      `heading`,
@@ -53,15 +76,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                      '" . $title . "',
                                      '" . $details . "',
                                      '" . $userId . "',
-                                     '" . $filename . "',
+                                     '" . $new_name . "',
                                      '" . $timestamp . "' 
                                      )";
 
     $result = mysqli_query($con, $query);
 
-    if($result){
+    if ($result) {
         echo "Discussion Added Successfully";
-    }else{
+    } else {
         echo "Error Adding Discussion";
     }
 
