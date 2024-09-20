@@ -47,7 +47,7 @@ if (mysqli_num_rows($comment_dataget) > 0) {
 
 } else {
     if (mysqli_num_rows($comment_dataget) == 0) {
-        echo "<p style='margin-left: 15px;margin-top: 15px;font-size: larger;'>No Comments Found Be The First To Comment</p>";
+        echo "<p class='text-center style='margin-left: 15px;margin-top: 15px;font-size: larger;'>No Comments Found</p>";
     }else{
         echo "";
     }

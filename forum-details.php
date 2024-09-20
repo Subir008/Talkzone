@@ -48,7 +48,7 @@ include("db/db.php");
                 }
                 ?>
                 <h1 class="display-5 fw-bold"><?php echo $row['heading'] ?></h1>
-                <p class="col-md-12 fs-4"><?php echo $row['details'] ?></p>
+                <p class="col-md-12 fs-4 mt-5"><?php echo $row['details'] ?></p>
 
             </div>
         </div>

@@ -14,7 +14,9 @@
         echo "Connection Could't Established Due to : " . mysqli_connect_error();
     }
 
-    $timestamp = date("Y-m-d H:i:s"); 
+    // Set default timezone value
+    date_default_timezone_set('Asia/Kolkata');
+    $timestamp = date("Y-m-d H:i:s");  
     $curentdate = date('d-m-Y');
 
     // Allowed file with extension name

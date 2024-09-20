@@ -27,16 +27,14 @@ $(document).ready(function () {
         id: id,
       },
       success: function (data) {
-        console.log(data);
+        // console.log(data);
 
         if (data) {
           $("#pagination").remove();
           $("#comment-box").append(data);
         } else {
-          // if (data != "No Comments Found Be The First To Comment") {
             $("#loadmore").html("No more comments to load");
             $("#loadmore").prop("disabled", true);
-          // }
         }
       },
     });

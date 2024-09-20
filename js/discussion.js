@@ -1,10 +1,5 @@
-// const toastLiveExample = document.getElementById("liveToast");
-// const toast = new bootstrap.Toast(toastLiveExample);
 const toastliveToastImage = document.getElementById("liveToastImage");
 const imagetoast = new bootstrap.Toast(liveToastImage);
-// const loader = document.querySelector(".loader");
-// const loaderwrapper = document.querySelector(".loader-wrapper");
-
 
 // Adding new discussion
 $("#discussion-submit").on("submit" , function (e) {
@@ -45,7 +40,7 @@ $("#discussion-submit").on("submit" , function (e) {
       contentType: false,
       processData : false,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         let text = data ;
   
         // Split the text into an array using the <br> tag as the separator
@@ -87,7 +82,7 @@ $("#discussion-submit").on("submit" , function (e) {
         $(".loader").hide();
         $(".loader-wrapper").css("visibility", "hidden");
         $(".loader-wrapper").hide();
-        // document.location.reload();
+        document.location.reload();
       }
   
     });
