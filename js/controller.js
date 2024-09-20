@@ -1,14 +1,11 @@
 const toastLiveExample = document.getElementById("liveToast");
 const toast = new bootstrap.Toast(toastLiveExample);
-const toastliveToastImage = document.getElementById("liveToastImage");
-const imagetoast = new bootstrap.Toast(liveToastImage);
 const loader = document.querySelector(".loader");
 const loaderwrapper = document.querySelector(".loader-wrapper");
 
-$(document).ready(function (){
-
-  // Storing the search parameter from the url in a variable 
-  // For example, if the current URL is https://example.com/path?a=1&b=2&id=123, 
+$(document).ready(function () {
+  // Storing the search parameter from the url in a variable
+  // For example, if the current URL is https://example.com/path?a=1&b=2&id=123,
   // the KeyValues variable would hold the string "?a=1&b=2&id=123".
   const KeyValues = window.location.search;
 
@@ -16,8 +13,8 @@ $(document).ready(function (){
   const urlParam = new URLSearchParams(KeyValues);
 
   // Extracting the 'id' Parameter from the url parameter
-  const id = urlParam.get('id');
-  
+  const id = urlParam.get("id");
+
   // console.log(id);
 
   // Comment Load section
@@ -25,26 +22,30 @@ $(document).ready(function (){
     $.ajax({
       url: "forum-comment-load.php",
       type: "POST",
-      data: { 
-        page_no : page,
-        id : id
+      data: {
+        page_no: page,
+        id: id,
       },
-      success : function (data) {
-        if(data){
-          $('#pagination').remove();
+      success: function (data) {
+        console.log(data);
+
+        if (data) {
+          $("#pagination").remove();
           $("#comment-box").append(data);
-        }else{
-          $('#loadmore').html("No more comments to load");
-          $('#loadmore').prop("disabled",true);
+        } else {
+          // if (data != "No Comments Found Be The First To Comment") {
+            $("#loadmore").html("No more comments to load");
+            $("#loadmore").prop("disabled", true);
+          // }
         }
-      }
+      },
     });
   }
   loadComment();
 
-  $(document).on("click" , "#loadmore" , function () {
+  $(document).on("click", "#loadmore", function () {
     var pid = $(this).data("id");
-    $('#loadmore').html("loading ....");
+    $("#loadmore").html("loading ....");
     loadComment(pid);
   });
 });
@@ -172,44 +173,48 @@ $("#login").on("click", function (e) {
   $(".loader-wrapper").show();
   $(".loader").show();
   $.ajax({
-    url : "login.php",
-    type : "POST",
-    data : {
-      contact : login_contact,
-      password : login_password
+    url: "login.php",
+    type: "POST",
+    data: {
+      contact: login_contact,
+      password: login_password,
     },
-    success : function (data){
+    success: function (data) {
       console.log(data);
-      if (data == "Login Successfull"){
+      if (data == "Login Successfull") {
         $("#loginModal").modal("hide");
-        $('html, body').animate({
-          scrollTop: $("#alert").offset().top
-        }, );
-        $("#alert").css("display","block");
-          document.getElementById('alert').innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $("html, body").animate({
+          scrollTop: $("#alert").offset().top,
+        });
+        $("#alert").css("display", "block");
+        document.getElementById(
+          "alert"
+        ).innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
            <strong><p> ${data} </p></strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
 
-          window.location.href = "index.php";
-      }
-     else if (data == "Invalid Contact"){
-          $("#loginModal").modal("hide");
-          $('html, body').animate({
-            scrollTop: $("#alert").offset().top
-        }, );
-        $("#alert").css("display","block");
-       document.getElementById('alert').innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        window.location.href = "index.php";
+      } else if (data == "Invalid Contact") {
+        $("#loginModal").modal("hide");
+        $("html, body").animate({
+          scrollTop: $("#alert").offset().top,
+        });
+        $("#alert").css("display", "block");
+        document.getElementById(
+          "alert"
+        ).innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
        <strong><p> ${data}!!! </p></strong>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
        </div>`;
-      }
-      else if (data == "Invalid Password"){
+      } else if (data == "Invalid Password") {
         $("#loginModal").modal("hide");
-        $('html, body').animate({
-          scrollTop: $("#alert").offset().top
-        }, );
-        $("#alert").css("display","block");
-       document.getElementById('alert').innerHTML = `<div class="alert  alert-danger alert-dismissible fade show" role="alert">
+        $("html, body").animate({
+          scrollTop: $("#alert").offset().top,
+        });
+        $("#alert").css("display", "block");
+        document.getElementById(
+          "alert"
+        ).innerHTML = `<div class="alert  alert-danger alert-dismissible fade show" role="alert">
        <strong><p> ${data}!!! </p></strong>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
        </div>`;
@@ -227,20 +232,22 @@ $(".logged-out").on("click", function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: 'logout.php',
+    url: "logout.php",
     success: function (data) {
       // console.log(data);
 
-      $('html, body').animate({
-        scrollTop: $("#alert").offset().top
-      }, );
-      $("#alert").css("display","block");
-      document.getElementById('alert').innerHTML = `<div class="alert  alert-info alert-dismissible fade show" role="alert">
+      $("html, body").animate({
+        scrollTop: $("#alert").offset().top,
+      });
+      $("#alert").css("display", "block");
+      document.getElementById(
+        "alert"
+      ).innerHTML = `<div class="alert  alert-info alert-dismissible fade show" role="alert">
        <strong><p> ${data} </p></strong>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
        </div>`;
-       window.location.href = "index.php";
-    }
+      window.location.href = "index.php";
+    },
   });
 });
 
@@ -297,93 +304,3 @@ $("#comment-submit").on("click", function () {
     },
   });
 });
-
-// Adding new discussion
-$("#discussion-submit").on("submit" , function (e) {
-
-  e.preventDefault();
-  // Getting the value from user
-  let discussiontitle = document.getElementById("discussion-title").value; 
-  let discussiondetails = document.getElementById("discussion-details").value; 
-
-  // Toaster of error if blank
-  if(discussiontitle == ""){
-    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
-    document.getElementById(
-      "toast-body"
-    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light"> Discussion Title is Blank </h6>`;
-    toast.show();
-    return;
-  }
-
-  if(discussiondetails == ""){
-    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
-    document.getElementById(
-      "toast-body"
-    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light">Discussion Details is Blank </h6>`;
-    toast.show();
-    return;
-  }
-
-  //Showing the toaster
-  $(".loader-wrapper").css("visibility", "visible");
-  $(".loader-wrapper").show();
-  $(".loader").show();
-
-  $.ajax({
-    url: "add-discussion.php",
-    type: "POST",
-    data: new FormData(this),
-    contentType: false,
-    processData : false,
-    success: function (data) {
-      console.log(data);
-      let text = data ;
-
-      // Split the text into an array using the <br> tag as the separator
-      let resultArray =  text.split('<br>');
-      let imageUploadStatus = resultArray[0];
-      let discussionAddedStatus = resultArray[1];
-
-      // Toaster of Image Submission
-      if(imageUploadStatus == "Image Uploaded Successfully"){ 
-        document.getElementById("liveToastImage").style.backgroundColor = "#1aa179";
-        document.getElementById(
-          "image-toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${imageUploadStatus}</h6>`;
-        imagetoast.show();
-      }else{
-        document.getElementById("liveToastImage").style.backgroundColor = "#dc3545";
-        document.getElementById(
-          "image-toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${imageUploadStatus}</h6>`;
-        imagetoast.show();
-      }
-      
-      // Toaster of discussion submission
-      if(discussionAddedStatus == "Discussion Added Successfully"){
-        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
-        document.getElementById(
-          "toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${discussionAddedStatus}</h6>`;
-        toast.show();
-      }else{
-        document.getElementById("liveToast").style.backgroundColor = "#dc3545";
-        document.getElementById(
-          "toast-body"
-        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${discussionAddedStatus}</h6>`;
-        toast.show();
-      }
-
-      // Closing the toaster
-      $(".loader").hide();
-      $(".loader-wrapper").css("visibility", "hidden");
-      $(".loader-wrapper").hide();
-      document.location.reload();
-    }
-
-  });
-
-
-});
-

@@ -53,18 +53,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['discussion-title'];
     $details = $_POST['discussion-details'];
 
-    $title = str_replace("<" , "&lt;" , $title);
-    $title = str_replace(">" , "&gt;" , $title);
-    $title = str_replace("\"" , "&quot;" , $title);
-    $title = str_replace("\'" , "&apos;" , $title);
-    $title = str_replace("\\" , "&frasl;" , $title);
+    $entities = array(
+        "<" => "&lt;",
+        ">" => "&gt;",
+        "\"" => "&quot;",
+        "'" => "&apos;",
+        "/" => "&frasl;",
+        "=" => "&equals;",
+        "," => "&comma;",
+        "?" => "&quest;",
+        "!" => "&excl;",
+        "+" => "&plus;",
+        "\\" => "&Backslash;",
+    );
+    
+    $title = strtr($title, $entities);
+    $details = strtr($details, $entities);    
 
-    $details = str_replace("<", "&lt;", $details);
-    $details = str_replace(">", "&gt;" , $details);
-    $details = str_replace("\'", "&apos;" , $details);
-    $details = str_replace("\"", "&quot;" , $details);
-    $details = str_replace("=", "&equals;" , $details); 
-    $details = str_replace(",", "&comma;" , $details); 
 
     $query = "INSERT INTO `forum` (
                                      `heading`,

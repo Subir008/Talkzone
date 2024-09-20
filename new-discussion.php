@@ -76,6 +76,7 @@
     <?php
     include("components/footer.php");
     ?>
+    <script src="js/discussion.js"></script>
 </body>
 
 </html>

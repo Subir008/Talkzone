@@ -61,7 +61,7 @@ include("db/db.php");
             <div class="mb-3">
                 <input type="hidden" name="forum_id" id="forum_id" value="<?php echo $id ?>">
                 <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id'] ?>">
-                <label for="comment" class="form-label">Comment</label>
+                <label for="comment" class="form-label">Type Your Comment</label>
                 <textarea class="form-control" id="comment" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" id="comment-submit">Submit</button>
