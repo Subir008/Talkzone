@@ -2,7 +2,7 @@
 <?php
 include("db/db.php");
 
-// // Checking the request method
+// Checking the request method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Storing file upload value as false
@@ -14,8 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Store the uploaded file name
         $filename = $_FILES['file']['name'];
 
+        //Split the upload file name
         $split_filename = explode('.', $filename);
 
+       // Store the file name without extension
         $name = $split_filename[0];
         // echo $name;
 
@@ -26,13 +28,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Check the uploaded extension is present in the allowed extension or not
         if (in_array($extension, $allowed_extension)) {
+
+            //Adding the file upload path
             $path = "image/thread-img/" . $new_name;
+            
+            // Uploading the file
             if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
                 echo "Image Uploaded Successfully";
                 echo "<br>";
                 $file_upload = true;
             } else {
-                echo 'ERROR Uploading File';
+                echo 'Error in Uploading File';
                 echo "<br>";
             }
         } else {
@@ -87,7 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = mysqli_query($con, $query);
 
-    if ($result) {
+     // Check data is updated or not
+     if ($result) {
         echo "Discussion Added Successfully";
     } else {
         echo "Error Adding Discussion";
