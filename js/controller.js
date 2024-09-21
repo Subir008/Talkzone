@@ -61,6 +61,29 @@ function clearlogindata() {
   document.getElementById("login_contact").value = "";
 }
 
+// For logging out
+function logout(){
+
+  $.ajax({
+    url: "logout.php",
+    success: function (data) {
+      console.log(data);
+
+      $("html, body").animate({
+        scrollTop: $("#alert").offset().top,
+      });
+      $("#alert").css("display", "block");
+      document.getElementById(
+        "alert"
+      ).innerHTML = `<div class="alert  alert-info alert-dismissible fade show" role="alert">
+       <strong><p> ${data} </p></strong>
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>`;
+      window.location.href = "index.php";
+    },
+  });
+}
+
 // For adding signup data
 $("#signup").on("click", function (e) {
   e.preventDefault();
@@ -229,24 +252,8 @@ $("#login").on("click", function (e) {
 $(".logged-out").on("click", function (e) {
   e.preventDefault();
 
-  $.ajax({
-    url: "logout.php",
-    success: function (data) {
-      // console.log(data);
-
-      $("html, body").animate({
-        scrollTop: $("#alert").offset().top,
-      });
-      $("#alert").css("display", "block");
-      document.getElementById(
-        "alert"
-      ).innerHTML = `<div class="alert  alert-info alert-dismissible fade show" role="alert">
-       <strong><p> ${data} </p></strong>
-       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-       </div>`;
-      window.location.href = "index.php";
-    },
-  });
+  logout();
+  
 });
 
 // Comment Submiting to the dB

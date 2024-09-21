@@ -1,89 +1,108 @@
 <?php
-    include ("db/db.php");
+include("db/db.php");
 
-    // Checking the request method
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+// Checking the request method
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        // Storing file upload value as false
-        $file_upload = false;
+    // Storing file upload value as false
+    $file_upload = false;
 
-        // Check image file is uploaded or not
-        if($_FILES['profile_img']['name'] != ""){
+    // Check image file is uploaded or not
+    if ($_FILES['profile_img']['name'] != "") {
 
-            //Store upload file name
-            $filename = $_FILES['profile_img']['name'];
+        //Store upload file name
+        $filename = $_FILES['profile_img']['name'];
 
-            //Split the upload file name
-            $split_filename = explode('.' , $filename);
+        //Split the upload file name
+        $split_filename = explode('.', $filename);
 
-            // Store the file name without extension
-            $name = $split_filename[0];
+        // Store the file name without extension
+        $name = $split_filename[0];
 
-            // Store the uploaded file extension
-            $extension = pathinfo($filename ,PATHINFO_EXTENSION);
+        // Store the uploaded file extension
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-            // Create new file name
-            $new_name = 'profile_img_' . $name . '_' . $curentdate . '.' . $extension;
+        // Create new file name
+        $new_name = 'profile_img_' . $name . '_' . $curentdate . '.' . $extension;
 
-            // Check the uploaded extension is present in the allowed extension or not
-            if(in_array($extension , $allowed_extension)){
+        // Check the uploaded extension is present in the allowed extension or not
+        if (in_array($extension, $allowed_extension)) {
 
-                //Adding the file upload path
-                $path = "image/profile-img/" .$new_name;
+            //Adding the file upload path
+            $path = "image/profile-img/" . $new_name;
 
-                // Uploading the file
-                if(move_uploaded_file($_FILES['profile_img']['tmp_name'], $path)){
-                    
-                    echo "Image Uploaded Successfully";
-                    echo "<br>";
-                    $file_upload = true;
+            // Uploading the file
+            if (move_uploaded_file($_FILES['profile_img']['tmp_name'], $path)) {
 
-                }else{
-                    echo "Error in Uploading Image";
-                    echo "<br>";
-                }
+                echo "Image Uploaded Successfully";
+                echo "<br>";
+                $file_upload = true;
 
-            }else{
-                echo "Invalid file extension";
+            } else {
+                echo "Error in Uploading Image";
                 echo "<br>";
             }
 
-
-        }else{
-            echo 'ERROR: No file selected';
+        } else {
+            echo "Invalid file extension";
             echo "<br>";
         }
 
-    // Storing file name as null if file is not upload by user
-    if ($file_upload == false) {
-        $new_name = NULL;
+
+    } else {
+        echo 'ERROR: No file selected';
+        echo "<br>";
     }
 
+    // Get all the data
     $user_id = $_POST['user_id'];
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
 
-    // Update query for updating all the datas
-    $query = "UPDATE user_master SET
-                                `user_name` = '".$full_name."',
-                                `user_email` = '".$email."',
-                                `gender` = '".$gender."',
-                                `address` = '".$address."',
-                                `profile_img` = '".$new_name."',
-                                `update_timestamp` = '".$timestamp."'
-                                WHERE `user_id` = '".$user_id."'";
+    // Storing file name as null if file is not upload by user
+    if ($file_upload == false) {
+
+        // Update query for updating all the datas except image 
+        $query = "UPDATE user_master SET
+                        `user_name` = '" . $full_name . "',
+                        `user_email` = '" . $email . "',
+                        `gender` = '" . $gender . "',
+                        `address` = '" . $address . "',
+                        `update_timestamp` = '" . $timestamp . "'
+                    WHERE `user_id` = '" . $user_id . "'";
+
+    } else {
+
+        // Get the image data from the db
+        $getdata = mysqli_query($con , "SELECT profile_img FROM user_master WHERE `user_id` = '" . $user_id . "'");
+        $row = mysqli_fetch_assoc($getdata);
+        $old_image = $row['profile_img'];
+        
+        // Delete the old image
+        unlink("image/profile-img/".$old_image);
+        
+        // Update query for updating all the datas including image
+        $query = "UPDATE user_master SET
+                        `user_name` = '" . $full_name . "',
+                        `user_email` = '" . $email . "',
+                        `gender` = '" . $gender . "',
+                        `address` = '" . $address . "',
+                        `profile_img` = '" . $new_name . "',
+                        `update_timestamp` = '" . $timestamp . "'
+                    WHERE `user_id` = '" . $user_id . "'";
+    }
 
     // echo $query; 
     $result = mysqli_query($con, $query);
 
     // Check data is updated or not
-    if($result){
+    if ($result) {
         echo "Data Updated Successfully";
-    }else{
+    } else {
         echo "Error in Updating Data";
     }
-                                      
-    }
+
+}
 ?>
