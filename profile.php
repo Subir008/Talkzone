@@ -1,5 +1,10 @@
 <?php
 include("db/db.php");
+session_start();
+if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
+    header("Location: index.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +34,6 @@ include("db/db.php");
 
     <?php
     $id = $_SESSION['user_id'];
-    echo $id;
     $query = "SELECT * FROM user_master WHERE user_id = '$id'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
@@ -37,6 +41,7 @@ include("db/db.php");
     $useremail = $row['user_email'];
     $gender = $row['gender'];
     $address = $row['address'];
+    $profile_img = $row['profile_img'];
     ?>
 
     <div class="container top-section">
@@ -44,17 +49,24 @@ include("db/db.php");
 
             <div class="col-md-4 d-flex gap-3">
                 <div class="image-section">
-                    <img src="image/img.jpg" alt="" class="profile-img text-center">
-                    <h5 class="fw-bold text-center mt-2">Full Name</h5>
-                    <p class="text-center">test@test.com</p>
+                    <?php
+                        if ($profile_img != ""){
+                            echo "<img src='image/profile-img/".$profile_img."' class='profile-img text-center' alt='Profile Image' >";
+                        }else{
+                            echo "<img src='image/img.jpg' class='profile-img text-center' alt='Profile Image '> ";
+                        }
+                    ?>
+                    <!-- <img src="image/img.jpg" alt="" class="profile-img text-center"> -->
+                    <h5 class="fw-bold text-center mt-2"><?php echo ($username != "") ? $username : "Full Name" ?></h5>
+                    <p class="text-center"><?php echo ($useremail != "") ? $useremail : "demo@demo.com" ?></p>
                 </div>
                 <div class="divider"></div>
             </div>
 
             <div class="col-md-8 px-5">
-                <h3>My Profile</h3>
+                <h2>My Profile</h2>
                 <br>
-                <h5>Personal Information</h5>
+                <h4>Personal Information</h4>
                 <hr>
                 <form id="personal_info" class="pb-5">
                     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id']; ?>">
@@ -107,7 +119,7 @@ include("db/db.php");
                     </div>
                 </form>
 
-                <h5 class="mt-5">Update Password</h5>
+                <h4 class="mt-5">Update Password</h4>
                 <hr>
 
                 <form id="update_password">
@@ -163,6 +175,7 @@ include("db/db.php");
     ?>
 
     <script src="js/profile.js"></script>
+    <script src="js/update-password.js"></script>
 
 </body>
 

@@ -2,9 +2,6 @@
     include ("db/db.php");
     session_start();
 
-    // $_SESSION['login'] = "";
-    // $login = "";
-
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $contact = $_POST['contact'];
         $password = $_POST['password'];
@@ -19,18 +16,15 @@
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['user_name'] = $result['user_name'];
                 $_SESSION['login'] = "Yes";
-                // $login = "Yes";
 
                 echo "Login Successfull";
 
             }else{
                 $_SESSION['login'] = "No";
-                // $login = "No";
                 echo "Invalid Password";
             }
         }else{
             $_SESSION['login'] = "No";
-            // $login = "No";
             echo "Invalid Contact";
         }
 

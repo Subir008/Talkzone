@@ -74,8 +74,7 @@ include("components/header.php");
           if ($row['forum_img'] != "") {
             ?>
             <a href="forum-details.php?id=<?php echo $row['forum_id'] ?>">
-              <!-- /id=<?php echo $row['forum_id'] ?> -->
-              <img src="image/java.jpg" class="card-img-top" alt="...">
+              <img src="image/thread-img/<?php echo $row['forum_img'] ?>" class="card-img-top" alt="Forum Image">
             </a>
             <a href="forum-details.php?id=<?php echo $row['forum_id'] ?>">
               <div class="card-body">

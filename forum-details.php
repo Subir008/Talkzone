@@ -43,7 +43,7 @@ include("db/db.php");
                 <?php
                 if ($row['forum_img'] != "") {
                     ?>
-                    <img src="image/java.jpg" class="forum-img" alt="...">
+                    <img src="image/thread-img/<?php echo $row['forum_img'] ?>" class="forum-img" alt="Forum Image">
                     <?php
                 }
                 ?>

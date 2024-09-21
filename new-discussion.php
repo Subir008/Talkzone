@@ -1,5 +1,10 @@
 <?php
     include ("db/db.php");
+    session_start();
+    if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
+        header("Location: index.php");
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
