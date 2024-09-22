@@ -33,8 +33,8 @@ $(document).ready(function () {
           $("#pagination").remove();
           $("#comment-box").append(data);
         } else {
-            $("#loadmore").html("No more comments to load");
-            $("#loadmore").prop("disabled", true);
+          $("#loadmore").html("No more comments to load");
+          $("#loadmore").prop("disabled", true);
         }
       },
     });
@@ -62,8 +62,7 @@ function clearlogindata() {
 }
 
 // For logging out
-function logout(){
-
+function logout() {
   $.ajax({
     url: "logout.php",
     success: function (data) {
@@ -253,7 +252,6 @@ $(".logged-out").on("click", function (e) {
   e.preventDefault();
 
   logout();
-  
 });
 
 // Comment Submiting to the dB
@@ -308,4 +306,23 @@ $("#comment-submit").on("click", function () {
       document.location.reload();
     },
   });
+});
+
+$("#search").on("click", function (e) {
+  e.preventDefault();
+  let searchValue = document.getElementById("search-bar").value;
+  console.log(searchValue);
+
+  $.ajax({
+    url: "search.php",
+    type: "GET",
+    data: {
+      searchValue: searchValue,
+    },
+    success: function (data) {
+      console.log(data);
+    },
+  });
+
+  $("#search-value").html(`"<em>${searchValue}</em>"`);
 });

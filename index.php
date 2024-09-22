@@ -112,7 +112,7 @@ include("components/header.php");
 </div>
 <!-- Toaster End -->
 
-
+<!-- Add Footer Part -->
 <?php
 include("components/footer.php");
 ?>
