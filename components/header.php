@@ -38,7 +38,7 @@ include("login.php");
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -49,11 +49,11 @@ include("login.php");
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" method="get" action="search-result.php" name="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-bar" autocomplete="off">
+                <button class="btn btn-outline-success" type="submit" id="search">Search</button>
             </form>
 
             <?php

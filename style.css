@@ -116,9 +116,14 @@
   color: #000;
 }
 
-.top-section{
+.top-section{ 
   margin-top: 7rem;
+  margin-bottom: 3rem;
   padding-bottom: 7rem;
+}
+
+.search-box{
+  min-height: 70vh;
 }
 
 .forum-img{

@@ -170,6 +170,7 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
     </div>
     <!-- Toaster End -->
 
+    <!-- Add Footer Part -->
     <?php
     include("components/footer.php");
     ?>
