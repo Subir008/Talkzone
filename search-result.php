@@ -30,6 +30,8 @@
 
     <div class="container top-section search-box">
         <h2 >Search Result For : <span id="search-value"></span></h2>
+        <div class="row result-box row-cols-1  g-4 mt-3">
+        </div>
     </div>
 
     <!-- Add Footer Part -->

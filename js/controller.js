@@ -12,8 +12,28 @@ $(document).ready(function () {
   // Creating a URLSearchParams Object
   const urlParam = new URLSearchParams(KeyValues);
 
-  // Extracting the 'id' Parameter from the url parameter
+  // Extracting the 'id' Parameter from the url parameter for pagination
   const id = urlParam.get("id");
+  
+  // Extracting the 'query' Parameter from the url parameter for search
+  const searchValue = urlParam.get("query");
+
+  // If any search value is fod
+  if (searchValue) {
+    $.ajax({
+      url: "search.php",
+      type: "GET",
+      data: {
+        searchValue: searchValue,
+      },
+      success: function (data) {
+        console.log(data);
+        $(".result-box").html(data);
+      },
+    });
+
+    $("#search-value").html(`"<em>${searchValue}</em>"`);
+  }
 
   // console.log(id);
 
@@ -308,21 +328,9 @@ $("#comment-submit").on("click", function () {
   });
 });
 
+// Search any value
 $("#search").on("click", function (e) {
   e.preventDefault();
   let searchValue = document.getElementById("search-bar").value;
-  console.log(searchValue);
-
-  $.ajax({
-    url: "search.php",
-    type: "GET",
-    data: {
-      searchValue: searchValue,
-    },
-    success: function (data) {
-      console.log(data);
-    },
-  });
-
-  $("#search-value").html(`"<em>${searchValue}</em>"`);
+  window.location.href = `search-result.php?query=${searchValue}`;
 });
