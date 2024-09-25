@@ -6,6 +6,9 @@ $("#personal_info").on("submit" , function (e) {
     e.preventDefault();
 
     //Showing the toaster
+    $("html, body").animate({
+      scrollTop: $(".loader-wrapper").offset().top,
+    });
     $(".loader-wrapper").css("visibility", "visible");
     $(".loader-wrapper").show();
     $(".loader").show();

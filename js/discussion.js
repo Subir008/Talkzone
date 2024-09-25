@@ -29,6 +29,9 @@ $("#discussion-submit").on("submit" , function (e) {
     }
   
     //Showing the toaster
+    $("html, body").animate({
+      scrollTop: $(".loader-wrapper").offset().top,
+    });
     $(".loader-wrapper").css("visibility", "visible");
     $(".loader-wrapper").show();
     $(".loader").show();

@@ -125,11 +125,10 @@
   margin-top: 7rem;
   margin-bottom: 3rem;
   padding-bottom: 7rem;
+  min-height: 75vh;
 }
 
-.search-box{
-  min-height: 70vh;
-}
+
 
 .forum-img{
   /* height: 35rem; */
@@ -167,6 +166,12 @@
 }
 
 /* Footer start */
+.footer{
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+}
 footer{
   /* position: fixed; */
   bottom: 0;

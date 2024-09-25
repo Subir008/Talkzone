@@ -1,10 +1,5 @@
 <?php
     include ("db/db.php");
-    session_start();
-    if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
-        header("Location: index.php");
-        exit;
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Discussion</title>
+    <link rel="icon" type="image/x-icon" href="image/logo.png">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,6 +22,10 @@
     <!-- Add Header Files -->
     <?php
     include("components/header.php");
+    if ($_SESSION['login'] == "No" && $_SESSION['login'] == ""){
+        header("Location: index.php");
+        exit;
+    }
     ?>
 
     <!-- Loader Start -->
@@ -78,9 +78,11 @@
     </div>
     <!-- Toaster End -->
 
-    <?php
+    <div class="footer">
+        <?php
     include("components/footer.php");
     ?>
+    </div>
     <script src="js/discussion.js"></script>
 </body>
 

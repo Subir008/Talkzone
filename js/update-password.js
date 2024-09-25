@@ -7,6 +7,9 @@ $("#password_changes").on("click", function (e) {
   let confirm_password = document.getElementById("confirm_password").value;
 
   //Showing the toaster
+  $("html, body").animate({
+    scrollTop: $(".loader-wrapper").offset().top,
+  });
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
