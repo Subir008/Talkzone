@@ -18,7 +18,7 @@ $(document).ready(function () {
   // Extracting the 'query' Parameter from the url parameter for search
   const searchValue = urlParam.get("query");
 
-  // If any search value is fod
+  // If any search value is found
   if (searchValue) {
     $.ajax({
       url: "search.php",
@@ -317,6 +317,67 @@ $("#comment-submit").on("click", function () {
         document.getElementById(
           "toast-body"
         ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${data}</h6>`;
+        toast.show();
+      }
+
+      $(".loader").hide();
+      $(".loader-wrapper").css("visibility", "hidden");
+      $(".loader-wrapper").hide();
+      document.location.reload();
+    },
+  });
+});
+
+// Comment Submiting to the dB
+$("#reply-submit").on("click", function () {
+  let forum_id = document.getElementById("forum_id").value;
+  let comment = document.getElementById("comment").value;
+  let user_id = document.getElementById("user_id").value;
+  let comment_id = document.getElementById("comment_id").value;
+
+  if (comment == "") {
+    document.getElementById("liveToast").style.backgroundColor = "#dd0426";
+    document.getElementById(
+      "toast-body"
+    ).innerHTML = `<h6 ><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;" > WARNING</span></i></h6><h6 class="text-light">Reply Field is Blank </h6>`;
+    toast.show();
+    return;
+  }
+
+  $(".loader-wrapper").css("visibility", "visible");
+  $(".loader-wrapper").show();
+  $(".loader").show();
+
+  $.ajax({
+    url: "add-reply.php",
+    type: "POST",
+    data: {
+      forum_id: forum_id,
+      comment: comment,
+      user_id: user_id,
+      comment_id: comment_id,
+    },
+    success: function (data) {
+      // console.log(data);
+
+      // Recieving the json data and store it 
+      const response = JSON.parse(data);
+			const status = response['status'];
+			const status_text = response['message'];
+           
+      document.getElementById("comment").value = "";
+
+      if (status == "Success") {
+        document.getElementById("liveToast").style.backgroundColor = "#1aa179";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> SUCCESS</span></i></h6><h6>${status_text}</h6>`;
+        toast.show();
+      } else {
+        document.getElementById("liveToast").style.backgroundColor = "#dc3545";
+        document.getElementById(
+          "toast-body"
+        ).innerHTML = `<h6><i class="fa-solid fa-circle-info"> <span style="letter-spacing:1px;"> ERROR </span></i></h6><h6>${status_text}</h6>`;
         toast.show();
       }
 

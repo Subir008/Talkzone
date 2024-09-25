@@ -15,6 +15,11 @@
        display: none;
     }
 
+    .navbar-brand{
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
   .login-dropdown {
        transform: translate3d(-99px, 5.2px, 0px);
     }
