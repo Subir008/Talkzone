@@ -48,7 +48,7 @@
                 <p class="col-md-12 fs-4 mt-5"><?php echo $row['comment_details'] ?></p>
                 <br>
                 <br>
-                <p> <strong> Posted By: </strong> <?php echo $row['user_name'] ?></p>
+                <p class="fs-5" style="font-weight:500"> <strong> Posted By: </strong> <?php echo $row['user_name'] ?></p>
             </div>
         </div>
         
