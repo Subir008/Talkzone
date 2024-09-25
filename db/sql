@@ -1,3 +1,0 @@
--- comment_master table
-CREATE TABLE `talkzone`.`comment_master` ( `comment_id` INT NOT NULL AUTO_INCREMENT ,  `comment_details` LONGTEXT NOT NULL ,  `forum_id` INT(50) NOT NULL , `user_id` INT(50) NOT NULL ,  `entry_timestamp` TIMESTAMP NOT NULL ,    PRIMARY KEY  (`comment_id`)) ENGINE = InnoDB;
-
