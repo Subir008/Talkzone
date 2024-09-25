@@ -1,6 +1,6 @@
 <footer class="footer mt-auto py-3 bg-dark">
-    <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+    <div class="container text-center">
+        <span class="text-white">@2024 Developed By Subir Karmakar</span>
     </div>
 </footer>
 

@@ -32,12 +32,16 @@ include("db/db.php");
     <!-- Fetching the forum details based on id -->
     <?php
     $id = $_GET['id'];
-    $query = "SELECT * FROM forum WHERE forum_id =  '$id ' ";
+    $query = "SELECT forum.heading, forum.details, forum.forum_img, user_master.user_name
+                    FROM forum 
+                    LEFT JOIN user_master ON user_master.user_id = forum.user_id
+                    WHERE forum.forum_id =  '$id ' ";
+
     $dataget = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($dataget);
     ?>
 
-    <div class="container top-section">
+<div class="container top-section">
         <div class="p-5 mb-4 bg-light rounded-3 inner-top-section ">
             <div class="container-fluid ">
                 <?php
@@ -49,6 +53,9 @@ include("db/db.php");
                 ?>
                 <h1 class="display-5 fw-bold"><?php echo $row['heading'] ?></h1>
                 <p class="col-md-12 fs-4 mt-5"><?php echo $row['details'] ?></p>
+                <br>
+                <br>
+                <p> <strong> Posted By: </strong> <?php echo $row['user_name'] ?></p>
 
             </div>
         </div>
@@ -91,6 +98,7 @@ include("db/db.php");
     </div>
     <!-- Toaster End -->
 
+    <!-- Footer Added -->
     <?php
     include("components/footer.php");
     ?>

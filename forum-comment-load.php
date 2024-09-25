@@ -32,7 +32,7 @@ if (mysqli_num_rows($comment_dataget) > 0) {
                 <div class='col-md-11 col-sm-11 col-11'>
                     <div class='card-body card-details'>
                         <h5 class='card-title'>{$comment_data["user_name"]} at {$comment_data["entry_timestamp"]}</h5>
-                        <p class='card-text'> {$comment_data["comment_details"]}</p>
+                        <p class='card-text'><a href='comment.php?id={$last_id}'> {$comment_data["comment_details"]}</a></p>
                     </div>
                 </div>
             </div>";
