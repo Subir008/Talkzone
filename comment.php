@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comments</title>
+    <link rel="icon" type="image/x-icon" href="image/logo.png">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -73,24 +75,47 @@
         </div>
 
         <h2 class="my-4">Read All The Reply</h2>
-        <?php
-            $reply_dataget = "SELECT * FROM reply_master "
-        ?>
         <div class="container-fluid">
             <div class="card mb-3" style="">    
+        <?php
+            $reply_dataget = "SELECT 
+                                reply_master.reply_details,
+                                reply_master.entry_timestamp ,
+                                user_master.user_name 
+                                FROM reply_master 
+                                LEFT JOIN user_master ON user_master.user_id = reply_master.user_id
+                                WHERE reply_master.comment_id = '$comment_id'";
+            
+            $reply_data = mysqli_query($con , $reply_dataget);
+            
+            if(mysqli_num_rows($reply_data) > 0){
+              
+            while($row = mysqli_fetch_assoc($reply_data) ){
+                ?>
+
             <div class='row g-0 px-2 comment-user'>
                 <div class='col-md-1 col-sm-1 col-1 text-center '>
                     <i class='fa-solid fa-circle-user fa-2x'></i>
                 </div>
                 <div class='col-md-11 col-sm-11 col-11'>
                     <div class='card-body card-details'>
-                        <h5 class='card-title'>{$comment_data["user_name"]} at {$comment_data["entry_timestamp"]}</h5>
-                        <p class='card-text'><a href='comment.php?id={$id}'> {$comment_data["comment_details"]}</a></p>
+                        <h5 class='card-title'><?php echo $row["user_name"] ?> at <?php echo $row['entry_timestamp'] ?> </h5>
+                        <p class='card-text'><?php echo $row["reply_details"] ?></p>
                     </div>
                 </div>
             </div>            
+            
+            <?php
+            }
+        }else{
+            ?>
+                <p class="text-center" style="margin-left: 15px;margin-top: 15px;font-size: larger; font-weight: 500;">No Reply Found</p>
+            <?php
+        }
+            ?>
             </div>
-        </div>
+            </div>
+    
 
     </div>
 

@@ -137,9 +137,13 @@ $("#signup").on("click", function (e) {
 
   //   console.log(password, contact);
 
+  $("html, body").animate({
+    scrollTop: $(".loader-wrapper").offset().top,
+  });
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
+  
   $.ajax({
     url: "signup.php",
     type: "POST",
@@ -209,6 +213,9 @@ $("#login").on("click", function (e) {
     return;
   }
 
+  $("html, body").animate({
+    scrollTop: $(".loader-wrapper").offset().top,
+  });
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
@@ -289,6 +296,9 @@ $("#comment-submit").on("click", function () {
     return;
   }
 
+  $("html, body").animate({
+    scrollTop: $(".loader-wrapper").offset().top,
+  });
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
@@ -344,9 +354,13 @@ $("#reply-submit").on("click", function () {
     return;
   }
 
+  $("html, body").animate({
+    scrollTop: $(".loader-wrapper").offset().top,
+  });
   $(".loader-wrapper").css("visibility", "visible");
   $(".loader-wrapper").show();
   $(".loader").show();
+  
 
   $.ajax({
     url: "add-reply.php",

@@ -40,7 +40,7 @@ if (mysqli_num_rows($dataget) > 0) {
     }
 } else{
     echo '
-        <p class="text-center" style="margin-left: 15px;margin-top: 15px;font-size: larger; font-weight: 500;">No results found</>
+        <p class="text-center" style="margin-top: 15px;font-size: larger; font-weight: 500;">No results found</>
     ';
 }
 

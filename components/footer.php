@@ -1,4 +1,4 @@
-<footer class="footer mt-auto py-3 bg-dark">
+<footer class=" mt-auto py-3 bg-dark">
     <div class="container text-center">
         <span class="text-white">@2024 Developed By Subir Karmakar</span>
     </div>

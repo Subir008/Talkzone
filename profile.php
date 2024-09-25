@@ -1,10 +1,5 @@
 <?php
 include("db/db.php");
-session_start();
-if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
-    header("Location: index.php");
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +7,7 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="image/logo.png">
     <title>My Profile</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,6 +20,10 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
     <!-- Add Header Files -->
     <?php
     include("components/header.php");
+    if ($_SESSION['login'] == "No" && $_SESSION['login'] == ""){
+        header("Location: index.php");
+        exit;
+    }
     ?>
 
     <!-- Loader Start -->
@@ -44,7 +44,7 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
     $profile_img = $row['profile_img'];
     ?>
 
-    <div class="container top-section">
+    <div class="container top-section pb-0">
         <div class="row">
 
             <div class="col-md-4 d-flex gap-3">
@@ -115,7 +115,7 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
                             aria-describedby="emailHelp" autocomplete="off">
                     </div>
                     <div class="mb-3 mt-4 text-center d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success col-5" id="update_profile">Save Changes</button>
+                        <button type="submit" class="btn btn-success col-md-5 col-sm-12" id="update_profile">Save Changes</button>
                     </div>
                 </form>
 
@@ -140,7 +140,7 @@ if ($_SESSION['login'] == "No" || $_SESSION['login'] == ""){
                             placeholder="Confirm Your Password">
                     </div>
                     <div class="mb-3 mt-4 text-center d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success col-5" id="password_changes">Change
+                        <button type="submit" class="btn btn-success col-md-5 ol-sm-12" id="password_changes">Change
                             Password</button>
                     </div>
                 </form>
